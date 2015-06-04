@@ -243,6 +243,17 @@
       });
     },
 
+    clear: function ($this, attr) {
+      var $selected = attr.$items.filter('.' + selectedClass);
+      // removed the selected styles
+      $selected.removeClass(selectedClass).attr('aria-selected', 'false');
+      // remove the selected values
+      $this.attr('value', '').attr('aria-valuetext', '');
+      // this resets the selected text
+      $('span.labeltext', attr.$label).text(attr.labelText);
+      attr.$hidden.val('');
+    },
+
     close: function ($this, attr) {
       var isOpen = $this.hasClass(openClass);
 
