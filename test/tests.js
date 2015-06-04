@@ -493,4 +493,28 @@
   });
 
 
+  /*** CLEAR FOR RESET ***/
+
+  T.module('clear', {
+    setup: function() {
+      initMultilist();
+    }
+  });
+  
+  T.test('clear removes any selected items.', function() {
+    initMultilist({datalist: datalist, labelText:'--select here--'});
+    $toggle.trigger('click');
+    $items.last().trigger('click');
+
+    $target.multilist('clear');
+
+    T.equal($items.filter('.selected').text(), '', 'No items should be selected');
+    T.equal($target.multilist('getSelected'), '', 'No value should be selected');
+    T.equal($target.attr('aria-valuetext'), '', 'This aria-value should be empty');
+    T.equal($target.attr('value'), '', 'This value should be empty');
+    T.equal($('span.labeltext').text(), '--select here--', 'Label text should be reset to default')
+    T.equal($hidden.val(), '', 'hidden value empty');
+  });
+
+
 } (QUnit, jQuery));
