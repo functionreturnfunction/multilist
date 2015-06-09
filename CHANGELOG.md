@@ -17,3 +17,15 @@
 ## 0.9.2
 
 - If mode is single and an item is selected when the page loads, the item gets clicked so the value is actually set.
+
+## 0.9.3
+
+- Added clear method to reset a multilist.
+
+## 0.9.4
+
+- Fixed multilist methods being called when the selector has no elements. 
+
+## 0.9.5
+
+- Fixed bad push of 0.9.4 tag without running grunt release.

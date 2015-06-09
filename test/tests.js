@@ -516,5 +516,9 @@
     T.equal($hidden.val(), '', 'hidden value empty');
   });
 
+  T.test('clear does not throw an error when selector selects 0 elements.', function() {
+    $('.doesnotexist').multilist('clear');
+    expect(0);
+  });
 
 } (QUnit, jQuery));

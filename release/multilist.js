@@ -436,21 +436,23 @@
     callback($this, $target, e);
   };
 
-
   /*** MODULE DEFINITION ***/
 
   $.fn[pluginName] = function (method) {
-    if ( methods[method] ) {
-      var $this = $(this);
-      var attr = $this.data(pluginName);
-      var args = [$this, attr].concat(Array.prototype.slice.call(arguments, 1));
-      return methods[method].apply(this, ($this, attr, args));
-    } else if (typeof method === 'object' || !method) {
-      return methods.init.apply(this,arguments);
-    } else {
-      $.error('Method ' + method + ' does not exist');
-    }
+	var $this = $(this);
+	// Due to the way methods are being called, they all throw null errors when 
+	// the selector has zero elements. So don't do anything when there aren't any elements.
+	if ($this.length > 0) {
+		if ( methods[method] ) {
+		  var attr = $this.data(pluginName);
+		  var args = [$this, attr].concat(Array.prototype.slice.call(arguments, 1));
+		  return methods[method].apply(this, ($this, attr, args));
+		} else if (typeof method === 'object' || !method) {
+		  return methods.init.apply(this,arguments);
+		} else {
+		  $.error('Method ' + method + ' does not exist');
+		}
+	}
   };
-
 
 })(jQuery);
