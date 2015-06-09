@@ -25,3 +25,7 @@
 ## 0.9.4
 
 - Fixed multilist methods being called when the selector has no elements. 
+
+## 0.9.5
+
+- Fixed bad push of 0.9.4 tag without running grunt release.
